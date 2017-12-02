@@ -77,8 +77,10 @@ namespace NeuralNetwork.Implementation
 
         public void Train(List<NNParameter<double>> input, List<NNParameter<double>> output)
         {
-            double leftBound = 0.5d;
+            double leftBound = 0.6d;
             double rightBound = 1d;
+
+            double startPoint = 0.8d;
             double n = 100;
 
 
@@ -93,13 +95,14 @@ namespace NeuralNetwork.Implementation
 
                     neurone.Dendrites.ForEach(dendrite =>
                     {
-                        neurone.Dendrites.First().Weight = localLeft;
+                        var currPos = (rightBound + leftBound) / 2;
+                        neurone.Dendrites.First().Weight = currPos;
                         double minEnergy = Energy(input, output);
 
-                        neurone.Dendrites.First().Weight = localLeft - step;
+                        neurone.Dendrites.First().Weight = currPos - step;
                         var energy1 = Energy(input, output);
 
-                        neurone.Dendrites.First().Weight = localLeft + step;
+                        neurone.Dendrites.First().Weight = currPos + step;
                         var energy2 = Energy(input, output);
 
                         if (minEnergy < energy1 && minEnergy < energy2)
@@ -110,35 +113,11 @@ namespace NeuralNetwork.Implementation
                         {
                             if (energy1 < energy2)
                             {
-                                localLeft = leftBound - (rightBound - leftBound);
-                                localRigth = rightBound - (rightBound - leftBound);
-                            }
-                            else
-                            {
-
-                                //neurone.Dendrites.First().Weight = localRigth;
-                                //double minEnergyR = Energy(input, output);
-
-                                //neurone.Dendrites.First().Weight = localRigth - step;
-                                //var energy1R = Energy(input, output);
-
-                                //neurone.Dendrites.First().Weight = localRigth + step;
-                                //var energy2R = Energy(input, output);
-
-                                //if (minEnergy < minEnergyR)
-                                //{
-                                //    // ignore
-                                //}
-                                //else
-                                //{
-
-                                //}
-
-                                localLeft = leftBound + (rightBound - leftBound);
-                                localRigth = rightBound + (rightBound - leftBound);
+                                step *= -1;
                             }
 
-                            for (double currWeight = localLeft; currWeight <= localRigth; currWeight += step)
+                            double currWeight = currPos;
+                            while (true)
                             {
                                 dendrite.Weight = currWeight;
                                 var currEnergy = Energy(input, output);
@@ -152,7 +131,23 @@ namespace NeuralNetwork.Implementation
                                 {
                                     break;
                                 }
+                                currWeight += step;
                             }
+                            //for (double currWeight = localLeft; currWeight <= localRigth; currWeight += step)
+                            //{
+                            //    dendrite.Weight = currWeight;
+                            //    var currEnergy = Energy(input, output);
+
+                            //    if (currEnergy < minEnergy)
+                            //    {
+                            //        minEnergy = currEnergy;
+                            //        dendrite.Weight = currWeight;
+                            //    }
+                            //    else
+                            //    {
+                            //        break;
+                            //    }
+                            //}
                         }
                         
                     });

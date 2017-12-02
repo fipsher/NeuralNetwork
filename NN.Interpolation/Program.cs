@@ -23,7 +23,7 @@ namespace NeuralNetwork.Console
 
         public static double Func(double x)
         {
-            return x + 1;
+            return x + x;
         }
 
 
@@ -46,7 +46,7 @@ namespace NeuralNetwork.Console
 
             var input = new List<NNParameter<double>>();
             var output = new List<NNParameter<double>>();
-            for (double i = 0; i < 200; i+= 1)
+            for (double i = 0; i < 20; i+= 0.1)
             {
                 input.Add(new NNParameter<double>(new List<double>() { i }));
                 output.Add(new NNParameter<double>(new List<double>() { Func(i) }));
@@ -55,12 +55,12 @@ namespace NeuralNetwork.Console
             neuralNetwork.Train(input, output);
 
 
-            for (int i = 0; i < 200; i++)
+            for (double i = 20; i < 40; i+=0.1)
             {
                 result = neuralNetwork.Run(new NNParameter<double>(new List<double> { i }));
-                var aprox = string.Join(",", result.Collection.Select(el => el.ToString()).ToArray());
+                var aprox = result.Collection.Single();
                 var exact = Func(i);
-                System.Console.WriteLine($"{aprox} //// {exact}");
+                System.Console.WriteLine($"{aprox} //// {exact} //// {Math.Abs(aprox - exact)}");
             }
 
             System.Console.WriteLine(Func(1));
