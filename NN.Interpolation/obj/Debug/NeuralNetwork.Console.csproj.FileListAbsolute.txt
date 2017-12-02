@@ -1,0 +1,13 @@
+D:\Projects\NeuralNetwork-master\NN.Interpolation\bin\Debug\NeuralNetwork.Console.exe.config
+D:\Projects\NeuralNetwork-master\NN.Interpolation\bin\Debug\NeuralNetwork.Console.exe
+D:\Projects\NeuralNetwork-master\NN.Interpolation\bin\Debug\NeuralNetwork.Console.pdb
+D:\Projects\NeuralNetwork-master\NN.Interpolation\bin\Debug\NeuralNetwork.dll
+D:\Projects\NeuralNetwork-master\NN.Interpolation\bin\Debug\NeuralNetwork.Implementation.dll
+D:\Projects\NeuralNetwork-master\NN.Interpolation\bin\Debug\Newtonsoft.Json.dll
+D:\Projects\NeuralNetwork-master\NN.Interpolation\bin\Debug\NeuralNetwork.Implementation.pdb
+D:\Projects\NeuralNetwork-master\NN.Interpolation\bin\Debug\NeuralNetwork.pdb
+D:\Projects\NeuralNetwork-master\NN.Interpolation\bin\Debug\Newtonsoft.Json.xml
+D:\Projects\NeuralNetwork-master\NN.Interpolation\obj\Debug\NeuralNetwork.Console.csprojResolveAssemblyReference.cache
+D:\Projects\NeuralNetwork-master\NN.Interpolation\obj\Debug\NeuralNetwork.Console.csproj.CoreCompileInputs.cache
+D:\Projects\NeuralNetwork-master\NN.Interpolation\obj\Debug\NeuralNetwork.Console.exe
+D:\Projects\NeuralNetwork-master\NN.Interpolation\obj\Debug\NeuralNetwork.Console.pdb

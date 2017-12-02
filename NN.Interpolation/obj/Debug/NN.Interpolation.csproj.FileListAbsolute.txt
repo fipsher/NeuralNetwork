@@ -1,0 +1,23 @@
+c:\users\andrew\documents\visual studio 2015\Projects\NN.Interpolation\NN.Interpolation\bin\Debug\NN.Interpolation.exe.config
+c:\users\andrew\documents\visual studio 2015\Projects\NN.Interpolation\NN.Interpolation\bin\Debug\NN.Interpolation.exe
+c:\users\andrew\documents\visual studio 2015\Projects\NN.Interpolation\NN.Interpolation\bin\Debug\NN.Interpolation.pdb
+c:\users\andrew\documents\visual studio 2015\Projects\NN.Interpolation\NN.Interpolation\obj\Debug\NN.Interpolation.csprojResolveAssemblyReference.cache
+c:\users\andrew\documents\visual studio 2015\Projects\NN.Interpolation\NN.Interpolation\obj\Debug\NN.Interpolation.exe
+c:\users\andrew\documents\visual studio 2015\Projects\NN.Interpolation\NN.Interpolation\obj\Debug\NN.Interpolation.pdb
+C:\Users\Andrew\Documents\Visual Studio 2015\Projects\NN.Interpolation\NN.Interpolation\bin\Debug\NeuralNetwork.API.dll
+C:\Users\Andrew\Documents\Visual Studio 2015\Projects\NN.Interpolation\NN.Interpolation\bin\Debug\NeuralNetwork.dll
+C:\Users\Andrew\Documents\Visual Studio 2015\Projects\NN.Interpolation\NN.Interpolation\bin\Debug\NeuralNetwork.API.pdb
+C:\Users\Andrew\Documents\Visual Studio 2015\Projects\NN.Interpolation\NN.Interpolation\bin\Debug\NeuralNetwork.pdb
+D:\Projects\NeuralNetwork-master\NN.Interpolation\bin\Debug\NN.Interpolation.exe.config
+D:\Projects\NeuralNetwork-master\NN.Interpolation\bin\Debug\NN.Interpolation.exe
+D:\Projects\NeuralNetwork-master\NN.Interpolation\bin\Debug\NN.Interpolation.pdb
+D:\Projects\NeuralNetwork-master\NN.Interpolation\bin\Debug\NeuralNetwork.API.dll
+D:\Projects\NeuralNetwork-master\NN.Interpolation\bin\Debug\NeuralNetwork.dll
+D:\Projects\NeuralNetwork-master\NN.Interpolation\bin\Debug\Newtonsoft.Json.dll
+D:\Projects\NeuralNetwork-master\NN.Interpolation\bin\Debug\NeuralNetwork.API.pdb
+D:\Projects\NeuralNetwork-master\NN.Interpolation\bin\Debug\NeuralNetwork.pdb
+D:\Projects\NeuralNetwork-master\NN.Interpolation\bin\Debug\Newtonsoft.Json.xml
+D:\Projects\NeuralNetwork-master\NN.Interpolation\obj\Debug\NN.Interpolation.csprojResolveAssemblyReference.cache
+D:\Projects\NeuralNetwork-master\NN.Interpolation\obj\Debug\NN.Interpolation.csproj.CoreCompileInputs.cache
+D:\Projects\NeuralNetwork-master\NN.Interpolation\obj\Debug\NN.Interpolation.exe
+D:\Projects\NeuralNetwork-master\NN.Interpolation\obj\Debug\NN.Interpolation.pdb

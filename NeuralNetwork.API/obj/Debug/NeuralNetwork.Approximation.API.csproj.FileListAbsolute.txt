@@ -1,0 +1,15 @@
+c:\users\andrew\documents\visual studio 2015\Projects\NN.Interpolation\NeuralNetwork.API\bin\Debug\NeuralNetwork.API.dll
+c:\users\andrew\documents\visual studio 2015\Projects\NN.Interpolation\NeuralNetwork.API\bin\Debug\NeuralNetwork.API.pdb
+c:\users\andrew\documents\visual studio 2015\Projects\NN.Interpolation\NeuralNetwork.API\bin\Debug\NeuralNetwork.dll
+c:\users\andrew\documents\visual studio 2015\Projects\NN.Interpolation\NeuralNetwork.API\bin\Debug\NeuralNetwork.pdb
+c:\users\andrew\documents\visual studio 2015\Projects\NN.Interpolation\NeuralNetwork.API\obj\Debug\NeuralNetwork.Approximation.API.csprojResolveAssemblyReference.cache
+c:\users\andrew\documents\visual studio 2015\Projects\NN.Interpolation\NeuralNetwork.API\obj\Debug\NeuralNetwork.API.dll
+c:\users\andrew\documents\visual studio 2015\Projects\NN.Interpolation\NeuralNetwork.API\obj\Debug\NeuralNetwork.API.pdb
+D:\Projects\NeuralNetwork-master\NeuralNetwork.API\bin\Debug\NeuralNetwork.API.dll
+D:\Projects\NeuralNetwork-master\NeuralNetwork.API\bin\Debug\NeuralNetwork.API.pdb
+D:\Projects\NeuralNetwork-master\NeuralNetwork.API\bin\Debug\NeuralNetwork.dll
+D:\Projects\NeuralNetwork-master\NeuralNetwork.API\bin\Debug\NeuralNetwork.pdb
+D:\Projects\NeuralNetwork-master\NeuralNetwork.API\obj\Debug\NeuralNetwork.Approximation.API.csprojResolveAssemblyReference.cache
+D:\Projects\NeuralNetwork-master\NeuralNetwork.API\obj\Debug\NeuralNetwork.Approximation.API.csproj.CoreCompileInputs.cache
+D:\Projects\NeuralNetwork-master\NeuralNetwork.API\obj\Debug\NeuralNetwork.API.dll
+D:\Projects\NeuralNetwork-master\NeuralNetwork.API\obj\Debug\NeuralNetwork.API.pdb

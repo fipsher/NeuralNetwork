@@ -1,0 +1,5 @@
+c:\users\andrew\documents\visual studio 2015\Projects\NN.Interpolation\NeuralNetwork.API\bin\Debug\NeuralNetwork.API.dll
+c:\users\andrew\documents\visual studio 2015\Projects\NN.Interpolation\NeuralNetwork.API\bin\Debug\NeuralNetwork.API.pdb
+c:\users\andrew\documents\visual studio 2015\Projects\NN.Interpolation\NeuralNetwork.API\obj\Debug\NeuralNetwork.API.csprojResolveAssemblyReference.cache
+c:\users\andrew\documents\visual studio 2015\Projects\NN.Interpolation\NeuralNetwork.API\obj\Debug\NeuralNetwork.API.dll
+c:\users\andrew\documents\visual studio 2015\Projects\NN.Interpolation\NeuralNetwork.API\obj\Debug\NeuralNetwork.API.pdb

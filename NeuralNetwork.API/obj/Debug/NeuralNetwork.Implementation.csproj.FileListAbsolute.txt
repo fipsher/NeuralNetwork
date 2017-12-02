@@ -1,0 +1,8 @@
+D:\Projects\NeuralNetwork-master\NeuralNetwork.API\bin\Debug\NeuralNetwork.Implementation.dll
+D:\Projects\NeuralNetwork-master\NeuralNetwork.API\bin\Debug\NeuralNetwork.Implementation.pdb
+D:\Projects\NeuralNetwork-master\NeuralNetwork.API\bin\Debug\NeuralNetwork.dll
+D:\Projects\NeuralNetwork-master\NeuralNetwork.API\bin\Debug\NeuralNetwork.pdb
+D:\Projects\NeuralNetwork-master\NeuralNetwork.API\obj\Debug\NeuralNetwork.Implementation.csprojResolveAssemblyReference.cache
+D:\Projects\NeuralNetwork-master\NeuralNetwork.API\obj\Debug\NeuralNetwork.Implementation.csproj.CoreCompileInputs.cache
+D:\Projects\NeuralNetwork-master\NeuralNetwork.API\obj\Debug\NeuralNetwork.Implementation.dll
+D:\Projects\NeuralNetwork-master\NeuralNetwork.API\obj\Debug\NeuralNetwork.Implementation.pdb

@@ -1,0 +1,11 @@
+c:\users\andrew\documents\visual studio 2015\Projects\NN.Interpolation\NeuralNetwork\obj\Debug\NeuralNetwork.csprojResolveAssemblyReference.cache
+c:\users\andrew\documents\visual studio 2015\Projects\NN.Interpolation\NeuralNetwork\bin\Debug\NeuralNetwork.dll
+c:\users\andrew\documents\visual studio 2015\Projects\NN.Interpolation\NeuralNetwork\bin\Debug\NeuralNetwork.pdb
+c:\users\andrew\documents\visual studio 2015\Projects\NN.Interpolation\NeuralNetwork\obj\Debug\NeuralNetwork.dll
+c:\users\andrew\documents\visual studio 2015\Projects\NN.Interpolation\NeuralNetwork\obj\Debug\NeuralNetwork.pdb
+D:\Projects\NeuralNetwork-master\NeuralNetwork\bin\Debug\NeuralNetwork.dll
+D:\Projects\NeuralNetwork-master\NeuralNetwork\bin\Debug\NeuralNetwork.pdb
+D:\Projects\NeuralNetwork-master\NeuralNetwork\obj\Debug\NeuralNetwork.csprojResolveAssemblyReference.cache
+D:\Projects\NeuralNetwork-master\NeuralNetwork\obj\Debug\NeuralNetwork.csproj.CoreCompileInputs.cache
+D:\Projects\NeuralNetwork-master\NeuralNetwork\obj\Debug\NeuralNetwork.dll
+D:\Projects\NeuralNetwork-master\NeuralNetwork\obj\Debug\NeuralNetwork.pdb
