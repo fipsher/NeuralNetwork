@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace NeuralNetwork.Console.Utils
 {
-    class LayerModelToBaseLayer
+    public class LayerModelToBaseLayer
     {
-        public static List<Layer<double, double>> MapLinear(List<LinearLayerModel> source, Dictionary<long, Func<double, double>> funcDictionary)
+        public static List<Layer<double, double>> MapLinear(List<LinearLayerModel> source, Dictionary<int, Func<double, double>> funcDictionary)
         {
             var result = new List<Layer<double, double>>();
 

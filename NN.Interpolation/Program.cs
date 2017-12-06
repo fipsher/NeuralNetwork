@@ -32,17 +32,15 @@ namespace NeuralNetwork.Console
 
             int inputsCount = 1;
 
-            var dict = new Dictionary<long, Func<double, double>>
+            var dict = new Dictionary<int, Func<double, double>>
             {
-                {1, (x) => x },
-                {2, (x) => x > 0 ? 1 : 0 }
+                {1, (x) =>  x },
+                {2, (x) =>  x * x },
+                {3, (x) => x > 0 ? 1 : 0 }
             };
             var linear = GetData<LinearLayerModel>(@"D:\Projects\NeuralNetwork-master\NN.Interpolation\source1.json");
             var layers1 = LayerModelToBaseLayer.MapLinear(linear, dict);
-            var neuralNetwork = new Implementation.NeuralNetwork(layers1, inputsCount);
-            var result = neuralNetwork.Run(new NNParameter<double>(new List<double> { 1 }));
-            
-            System.Console.WriteLine(string.Join(",", result.Collection.Select(i => i.ToString()).ToArray()));
+            var neuralNetwork = new Implementation.NeuralNetworkImplementation(layers1, inputsCount);
 
             var input = new List<NNParameter<double>>();
             var output = new List<NNParameter<double>>();
@@ -55,12 +53,12 @@ namespace NeuralNetwork.Console
             neuralNetwork.Train(input, output);
 
 
-            for (double i = 20; i < 40; i+=0.1)
+            for (double i = 0; i < 30; i+=1)
             {
-                result = neuralNetwork.Run(new NNParameter<double>(new List<double> { i }));
+                var result = neuralNetwork.Run(new NNParameter<double>(new List<double> { i }));
                 var aprox = result.Collection.Single();
                 var exact = Func(i);
-                System.Console.WriteLine($"{aprox} //// {exact} //// {Math.Abs(aprox - exact)}");
+                System.Console.WriteLine($"i={i} :==={aprox} //// {exact} //// {Math.Abs(aprox - exact)}");
             }
 
             System.Console.WriteLine(Func(1));

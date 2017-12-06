@@ -14,7 +14,7 @@ namespace NeuralNetwork.Console.Utils
         public double Bias { get; set; }
 
         [JsonProperty("Function")]
-        public long Function { get; set; }
+        public int Function { get; set; }
 
         [JsonProperty("References")]
         public double[][] References { get; set; }

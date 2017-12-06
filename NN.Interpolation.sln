@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuralNetwork", "NeuralNetw
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuralNetwork.Implementation", "NeuralNetwork.API\NeuralNetwork.Implementation.csproj", "{0AB08668-C5F0-43C3-915E-57295E4BBC12}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NN.Presentation.Form", "NN.Presentation.Form\NN.Presentation.Form.csproj", "{D0ACF14B-8DA1-4F56-9193-8E3C016416E7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{0AB08668-C5F0-43C3-915E-57295E4BBC12}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0AB08668-C5F0-43C3-915E-57295E4BBC12}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0AB08668-C5F0-43C3-915E-57295E4BBC12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0ACF14B-8DA1-4F56-9193-8E3C016416E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0ACF14B-8DA1-4F56-9193-8E3C016416E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0ACF14B-8DA1-4F56-9193-8E3C016416E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0ACF14B-8DA1-4F56-9193-8E3C016416E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

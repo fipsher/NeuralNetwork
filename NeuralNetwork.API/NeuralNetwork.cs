@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace NeuralNetwork.Implementation
 {
-    public class NeuralNetwork : BaseNeuralNetwork<double, double>, INeuralNetwork<NNParameter<double>, NNParameter<double>>
+    public class NeuralNetworkImplementation : BaseNeuralNetwork<double, double>, INeuralNetwork<NNParameter<double>, NNParameter<double>>
     {
         private int _inputsCount { get; set; }
 
@@ -26,7 +26,7 @@ namespace NeuralNetwork.Implementation
             }
         }
 
-        public NeuralNetwork(List<Layer<double, double>> layers, int inputsCount)
+        public NeuralNetworkImplementation(List<Layer<double, double>> layers, int inputsCount)
         {
             Layers = layers;
             InputsCount = inputsCount;
@@ -77,83 +77,70 @@ namespace NeuralNetwork.Implementation
 
         public void Train(List<NNParameter<double>> input, List<NNParameter<double>> output)
         {
-            double leftBound = 0.6d;
-            double rightBound = 1d;
-
-            double startPoint = 0.8d;
-            double n = 100;
-
-
+            double startPoint = 0.0370651d;
+            double step = 0.1;
 
             Layers.ForEach(layer =>
             {
                 layer.Neurons.ForEach(neurone =>
                 {
-                    var localLeft = leftBound;
-                    var localRigth = rightBound;
-                    double step = (localRigth - localLeft) / n;
-
                     neurone.Dendrites.ForEach(dendrite =>
                     {
-                        var currPos = (rightBound + leftBound) / 2;
-                        neurone.Dendrites.First().Weight = currPos;
+                        var localStep = step;
+
+                        neurone.Dendrites.First().Weight = startPoint;
                         double minEnergy = Energy(input, output);
 
-                        neurone.Dendrites.First().Weight = currPos - step;
+                        neurone.Dendrites.First().Weight = startPoint - localStep;
                         var energy1 = Energy(input, output);
 
-                        neurone.Dendrites.First().Weight = currPos + step;
+                        neurone.Dendrites.First().Weight = startPoint + localStep;
                         var energy2 = Energy(input, output);
+
+                        double currWeight = startPoint;
 
                         if (minEnergy < energy1 && minEnergy < energy2)
                         {
-                            // ignore
+                            dendrite.Weight = currWeight;
                         }
                         else
                         {
                             if (energy1 < energy2)
                             {
-                                step *= -1;
+                                localStep *= -1;
+                                minEnergy = energy1;
                             }
+                            else
+                            {
+                                minEnergy = energy2;
+                            }
+                            currWeight = startPoint + localStep;
 
-                            double currWeight = currPos;
+                            double resultWeight = currWeight;
                             while (true)
                             {
-                                dendrite.Weight = currWeight;
+                                dendrite.Weight = currWeight + localStep;
                                 var currEnergy = Energy(input, output);
 
                                 if (currEnergy < minEnergy)
                                 {
                                     minEnergy = currEnergy;
-                                    dendrite.Weight = currWeight;
+                                    resultWeight = currWeight;
+                                    currWeight += localStep;
                                 }
                                 else
                                 {
                                     break;
                                 }
-                                currWeight += step;
                             }
-                            //for (double currWeight = localLeft; currWeight <= localRigth; currWeight += step)
-                            //{
-                            //    dendrite.Weight = currWeight;
-                            //    var currEnergy = Energy(input, output);
-
-                            //    if (currEnergy < minEnergy)
-                            //    {
-                            //        minEnergy = currEnergy;
-                            //        dendrite.Weight = currWeight;
-                            //    }
-                            //    else
-                            //    {
-                            //        break;
-                            //    }
-                            //}
+                            dendrite.Weight = resultWeight;
                         }
-                        
+
                     });
                 });
             });
         }
+
 
         private double Energy(List<NNParameter<double>> input, List<NNParameter<double>> output)
         {

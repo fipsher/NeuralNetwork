@@ -5,9 +5,14 @@ namespace NeuralNetwork.Models
 {
     public class NNParameter<TItem>
     {
-        public NNParameter(List<TItem> collection)
+        public NNParameter(IEnumerable<TItem> collection)
         {
-            Collection = collection;
+            Collection = new List<TItem>(collection);
+        }
+
+        public NNParameter(TItem item)
+        {
+            Collection = new List<TItem> { item };
         }
 
         public List<TItem> Collection { get; set; }
