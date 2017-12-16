@@ -17,7 +17,7 @@ namespace NN.Presentation.Form
     public partial class NN : WindowsForm
     {
         NeuralNetworkImplementation _neuralNetwork;
-        Func<double, double> _function = (x) => 3 * x * x + 2 * x + 8;
+        Func<double, double> _function = (x) => 5 * x + 3;
         Dictionary<int, Func<double, double>> funcDictionary;
 
         public static List<T> GetData<T>(string path)
@@ -73,7 +73,7 @@ namespace NN.Presentation.Form
 
 
             StringBuilder values = new StringBuilder();
-            for (double i = 0; i < 30; i+=0.1)
+            for (double i = 0; i < 3; i+= 0.01)
             {
                 NNParameter<double> actualResult = _neuralNetwork.Run(new NNParameter<double>(i));
 
@@ -99,7 +99,7 @@ namespace NN.Presentation.Form
             List<NNParameter<double>> inputs = new List<NNParameter<double>>();
             List<NNParameter<double>> outputs = new List<NNParameter<double>>();
 
-            for (double i = 1; i < 20; i+=0.1)
+            for (double i = 0; i < 1; i += 0.01)
             {
                 inputs.Add(new NNParameter<double>(Enumerable.Repeat(i, _neuralNetwork.InputsCount).ToArray()));
                 outputs.Add(new NNParameter<double>(Enumerable.Repeat(_function(i), _neuralNetwork.InputsCount).ToArray()));

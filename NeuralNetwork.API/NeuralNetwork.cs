@@ -7,11 +7,24 @@ using System.Linq;
 
 namespace NeuralNetwork.Implementation
 {
+    public class KV
+    {
+        public List<double> W { get; set; }
+        public double E { get; set; }
+    }
+
     public class NeuralNetworkImplementation : BaseNeuralNetwork<double, double>, INeuralNetwork<NNParameter<double>, NNParameter<double>>
     {
         private int _inputsCount { get; set; }
 
         public override List<Layer<double, double>> Layers { get; set; }
+
+        List<NNParameter<double>> input;
+        List<NNParameter<double>> output;
+        double start = -3;
+        double end = 3;
+        double step = 1;
+        KV res;
 
         public int InputsCount
         {
@@ -30,29 +43,20 @@ namespace NeuralNetwork.Implementation
         {
             Layers = layers;
             InputsCount = inputsCount;
-        }
-
-        public NNParameter<double> Run(NNParameter<double> input)
-        {
-
-            if (InputsCount != input.Collection.Count)
-            {
-                throw new InvalidDataException($"Dimension missmatch. Current inputs length {input.Collection.Count}, expected count {InputsCount}");
-            }
 
             Layer<double, double> firstLayer = Layers.First();
 
             firstLayer.Neurons.ForEach(neuron =>
             {
-                neuron.Function = () =>
+                neuron.Function = (collection) =>
                 {
                     double soma = 0;
                     // Sum(xi * w)
                     for (int i = 0; i < InputsCount; i++)
                     {
-                        soma += input.Collection[i] * neuron.Dendrites[i].Weight;
+                        soma += collection[i] * neuron.Dendrites[i].Weight;
                     }
-                    
+
                     return firstLayer.ActivationFunction(soma + firstLayer.Bias);
                 };
             });
@@ -62,92 +66,139 @@ namespace NeuralNetwork.Implementation
             {
                 layer.Neurons.ForEach(neuron =>
                 {
-                    neuron.Function = () =>
+                    neuron.Function = (collection) =>
                     {
                         // Sum(x * w)
-                        double soma = neuron.Dendrites.Select(c => c.PreviousNeuron.Function() * c.Weight).Sum();
-                        
+                        double soma = neuron.Dendrites.Select(c => c.PreviousNeuron.Function(collection) * c.Weight).Sum();
+
                         return layer.ActivationFunction(soma + layer.Bias);
                     };
                 });
             });
+        }
 
-            return new NNParameter<double>(Layers.Last().Neurons.Select(neuron => neuron.Function()).ToList());
+        public NNParameter<double> Run(NNParameter<double> input)
+        {
+            if (InputsCount != input.Collection.Count)
+            {
+                throw new InvalidDataException($"Dimension missmatch. Current inputs length {input.Collection.Count}, expected count {InputsCount}");
+            }
+
+            return new NNParameter<double>(Layers
+                .Last()
+                .Neurons
+                .Select(neuron => neuron.Function(input.Collection)));
         }
 
         public void Train(List<NNParameter<double>> input, List<NNParameter<double>> output)
         {
-            double startPoint = 0.0370651d;
-            double step = 0.1;
+            this.input = input;
+            this.output = output;
 
-            Layers.ForEach(layer =>
+            List<Dendrite<double>> dendrides = Layers.SelectMany(layer => layer.Neurons.SelectMany(neurone => neurone.Dendrites)).ToList();
+            dendrides.ForEach(d =>
             {
-                layer.Neurons.ForEach(neurone =>
-                {
-                    neurone.Dendrites.ForEach(dendrite =>
-                    {
-                        var localStep = step;
-
-                        neurone.Dendrites.First().Weight = startPoint;
-                        double minEnergy = Energy(input, output);
-
-                        neurone.Dendrites.First().Weight = startPoint - localStep;
-                        var energy1 = Energy(input, output);
-
-                        neurone.Dendrites.First().Weight = startPoint + localStep;
-                        var energy2 = Energy(input, output);
-
-                        double currWeight = startPoint;
-
-                        if (minEnergy < energy1 && minEnergy < energy2)
-                        {
-                            dendrite.Weight = currWeight;
-                        }
-                        else
-                        {
-                            if (energy1 < energy2)
-                            {
-                                localStep *= -1;
-                                minEnergy = energy1;
-                            }
-                            else
-                            {
-                                minEnergy = energy2;
-                            }
-                            currWeight = startPoint + localStep;
-
-                            double resultWeight = currWeight;
-                            while (true)
-                            {
-                                dendrite.Weight = currWeight + localStep;
-                                var currEnergy = Energy(input, output);
-
-                                if (currEnergy < minEnergy)
-                                {
-                                    minEnergy = currEnergy;
-                                    resultWeight = currWeight;
-                                    currWeight += localStep;
-                                }
-                                else
-                                {
-                                    break;
-                                }
-                            }
-                            dendrite.Weight = resultWeight;
-                        }
-
-                    });
-                });
+                d.Weight = start;
             });
+            var weights = dendrides.Select(el => el.Weight).ToList();
+            res = new KV
+            {
+                W = weights,
+                E = Energy(input, output)
+            };
+
+            DoSmth(dendrides);
+
+            for (int i = 0; i < dendrides.Count; i++)
+            {
+                dendrides[i].Weight = res.W[i];
+            }
         }
 
+        public void DoSmth(List<Dendrite<double>> dendrides, int i)
+        {
+            var dendride = dendrides[i];
+            if (dendride.Weight < end)
+            {
+                dendride.Weight += step;
+
+                //var currEnergy = Energy(input, output);
+                //if (res == null || res.E > currEnergy)
+                //{
+                //    var weights = dendrides.Select(el => el.Weight).ToList();
+                //    res.W.Clear();
+                //    res.W = weights;
+                //    res.E = currEnergy;
+                //}
+
+
+                if (i != 0)
+                {
+                    dendrides.GetRange(0, i).ForEach(d =>
+                    {
+                        d.Weight = start;
+                    });
+                }
+                DoSmth(dendrides, 0);
+
+            }
+            else if (i != dendrides.Count - 1)
+            {
+                dendride.Weight = start;
+                DoSmth(dendrides, i + 1);
+            }
+        }
+
+        public void DoSmth(List<Dendrite<double>> dendrides)
+        {
+            for (int i = 0; i < dendrides.Count; i++)
+            {
+                var dendride = dendrides[i];
+                dendride.Weight += step;
+
+                var currE = Energy(input, output);
+
+
+                Console.WriteLine(string.Join(" ", dendrides.Select(el => el.Weight)));
+
+                if (currE < res.E)
+                {
+                    res.W.Clear();
+
+                    var weights = dendrides.Select(el => el.Weight).ToList();
+                    res.E = currE;
+                    res.W = weights;
+                }
+
+                if (i == 0 && dendride.Weight < end)
+                {
+                    i = -1;
+                }
+                else if (i == 0)
+                {
+                    dendride.Weight = start;
+                }
+                else  if (dendride.Weight > end)
+                {
+                    dendrides.GetRange(0, i + 1).ForEach(d =>
+                    {
+                        d.Weight = start;
+                    });
+                }
+                else
+                {
+                    i = -1;
+                }
+            }
+        }
 
         private double Energy(List<NNParameter<double>> input, List<NNParameter<double>> output)
         {
             double energy = 0;
             for (int i = 0; i < input.Count; i++)
             {
-                double element = output[i].Collection.Zip(Run(input[i]).Collection, (a, b) => a - b).First();
+                var runned = Run(input[i]);
+                double element = output[i].Collection.Zip(runned.Collection, (a, b) => a - b).First();
                 energy += Math.Pow(element, 2);
             }
 

@@ -7,6 +7,6 @@ namespace NeuralNetwork.Models
     {
         public List<Dendrite<T>> Dendrites { get; set; }
 
-        public Func<T> Function { get; set; }
+        public Func<List<T>, T> Function { get; set; }
     }
 }
