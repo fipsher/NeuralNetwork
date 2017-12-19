@@ -60,10 +60,6 @@
     <None Include="source.json" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NeuralNetwork.API\NeuralNetwork.Implementation.csproj">
-      <Project>{0ab08668-c5f0-43c3-915e-57295e4bbc12}</Project>
-      <Name>NeuralNetwork.Implementation</Name>
-    </ProjectReference>
     <ProjectReference Include="..\NeuralNetwork\NeuralNetwork.csproj">
       <Project>{03B23E8A-4EF4-4BB1-B583-0BA2FF692944}</Project>
       <Name>NeuralNetwork</Name>

@@ -42,12 +42,12 @@ namespace NeuralNetwork.Console
             var layers1 = LayerModelToBaseLayer.MapLinear(linear, dict);
             var neuralNetwork = new Implementation.NeuralNetworkImplementation(layers1, inputsCount);
 
-            var input = new List<NNParameter<double>>();
-            var output = new List<NNParameter<double>>();
+            var input = new List<double>();
+            var output = new List<double>();
             for (double i = 0; i < 20; i+= 1)
             {
-                input.Add(new NNParameter<double>(new List<double>() { i }));
-                output.Add(new NNParameter<double>(new List<double>() { Func(i) }));
+                input.Add(i);
+                output.Add(Func(i));
             }
 
             neuralNetwork.Train(input, output);
@@ -55,10 +55,9 @@ namespace NeuralNetwork.Console
 
             for (double i = 0; i < 30; i += 1)
             {
-                var result = neuralNetwork.Run(new NNParameter<double>(new List<double> { i }));
-                var aprox = result.Collection.Single();
+                var result = neuralNetwork.Run(i);
                 var exact = Func(i);
-                System.Console.WriteLine($"i={i} :==={aprox} //// {exact} //// {Math.Abs(aprox - exact)}");
+                System.Console.WriteLine($"i={i} :==={result} //// {exact} //// {Math.Abs(result - exact)}");
             }
 
             System.Console.WriteLine(Func(1));
