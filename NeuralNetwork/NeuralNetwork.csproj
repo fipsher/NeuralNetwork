@@ -41,13 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\INeuralNetwork.cs" />
-    <Compile Include="Interfaces\IRunnable.cs" />
-    <Compile Include="Interfaces\ITrainable.cs" />
-    <Compile Include="Models\BaseNeuralNetwork.cs" />
     <Compile Include="Models\Dendrite.cs" />
     <Compile Include="Models\Layer.cs" />
     <Compile Include="Models\Neuron.cs" />
-    <Compile Include="Models\NNParameter.cs" />
+    <Compile Include="NeuralNetwork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

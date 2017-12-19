@@ -1,7 +1,11 @@
-﻿namespace NeuralNetwork.Interfaces
+﻿using System.Collections.Generic;
+
+namespace NeuralNetwork.Interfaces
 {
-    public interface INeuralNetwork<TNeuralInptuParameter, TNeuralOutputParameter> : IRunnable<TNeuralInptuParameter, TNeuralOutputParameter>,
-                                                                                     ITrainable<TNeuralInptuParameter, TNeuralOutputParameter>
+    public interface INeuralNetwork<TIn, TOut>
     {
+        TOut Run(TIn input);
+
+        void Train(List<TIn> input, List<TOut> output);
     }
 }
