@@ -13,14 +13,14 @@ namespace NeuralNetwork.Implementation
         public double E { get; set; }
     }
 
-    public class NeuralNetworkImplementation : INeuralNetwork<double, double>
+    public class NeuralNetworkImplementation : BaseNeuralNetwork<double, double>, INeuralNetwork<NNParameter<double>, NNParameter<double>>
     {
         private int _inputsCount { get; set; }
 
-        public List<Layer<double, double>> Layers { get; set; }
+        public override List<Layer<double, double>> Layers { get; set; }
 
-        List<double> input;
-        List<double> output;
+        List<NNParameter<double>> input;
+        List<NNParameter<double>> output;
         double start = -3;
         double end = 3;
         double step = 1;
@@ -39,9 +39,7 @@ namespace NeuralNetwork.Implementation
             }
         }
 
-        public NeuralNetworkImplementation(
-            List<Layer<double, double>> layers, 
-            int inputsCount)
+        public NeuralNetworkImplementation(List<Layer<double, double>> layers, int inputsCount)
         {
             Layers = layers;
             InputsCount = inputsCount;
@@ -63,6 +61,7 @@ namespace NeuralNetwork.Implementation
                 };
             });
 
+            // Going thru layers from second
             Layers.Skip(1).ToList().ForEach(layer =>
             {
                 layer.Neurons.ForEach(neuron =>
@@ -78,18 +77,20 @@ namespace NeuralNetwork.Implementation
             });
         }
 
-        public double Run(double input)
+        public NNParameter<double> Run(NNParameter<double> input)
         {
-            return Layers
+            if (InputsCount != input.Collection.Count)
+            {
+                throw new InvalidDataException($"Dimension missmatch. Current inputs length {input.Collection.Count}, expected count {InputsCount}");
+            }
+
+            return new NNParameter<double>(Layers
                 .Last()
                 .Neurons
-                .Select(neuron => neuron.Function(new List<double> { input }))
-                .First();
+                .Select(neuron => neuron.Function(input.Collection)));
         }
 
-        public void Train(
-            List<double> input, 
-            List<double> output)
+        public void Train(List<NNParameter<double>> input, List<NNParameter<double>> output)
         {
             this.input = input;
             this.output = output;
@@ -106,7 +107,7 @@ namespace NeuralNetwork.Implementation
                 E = Energy(input, output)
             };
 
-            MonteKarlo(dendrides);
+            DoSmth(dendrides);
 
             for (int i = 0; i < dendrides.Count; i++)
             {
@@ -148,7 +149,7 @@ namespace NeuralNetwork.Implementation
             }
         }
 
-        public void MonteKarlo(List<Dendrite<double>> dendrides)
+        public void DoSmth(List<Dendrite<double>> dendrides)
         {
             for (int i = 0; i < dendrides.Count; i++)
             {
@@ -177,7 +178,7 @@ namespace NeuralNetwork.Implementation
                 {
                     dendride.Weight = start;
                 }
-                else if (dendride.Weight > end)
+                else  if (dendride.Weight > end)
                 {
                     dendrides.GetRange(0, i + 1).ForEach(d =>
                     {
@@ -191,13 +192,13 @@ namespace NeuralNetwork.Implementation
             }
         }
 
-        private double Energy(List<double> input, List<double> output)
+        private double Energy(List<NNParameter<double>> input, List<NNParameter<double>> output)
         {
             double energy = 0;
             for (int i = 0; i < input.Count; i++)
             {
                 var runned = Run(input[i]);
-                double element = Math.Pow(output[i] - runned, 2);
+                double element = output[i].Collection.Zip(runned.Collection, (a, b) => a - b).First();
                 energy += Math.Pow(element, 2);
             }
 

@@ -3,19 +3,19 @@ using System.Collections.Generic;
 
 namespace NeuralNetwork.Models
 {
-    public class Layer<TIn, TOut>
+    public class Layer<TInput, TOutput>
     {
-        public Layer(int amountOfNeurones, Func<TIn, TOut> activationFunction, TOut bias)
+        public Layer(int neuronsCount, Func<TInput, TOutput> activationFunction, TOutput bias)
         {
-            Neurons = new List<Neuron<TOut>>(amountOfNeurones);
+            Neurons = new List<Neuron<TOutput>>(neuronsCount);
             ActivationFunction = activationFunction;
             Bias = bias;
         }
 
-        public Func<TIn, TOut> ActivationFunction { get; set; }
+        public Func<TInput, TOutput> ActivationFunction { get; set; }
 
-        public List<Neuron<TOut>> Neurons { get; set; }
+        public List<Neuron<TOutput>> Neurons { get; set; }
 
-        public TOut Bias;
+        public TOutput Bias;
     }
 }

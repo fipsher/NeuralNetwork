@@ -96,6 +96,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NeuralNetwork.API\NeuralNetwork.Implementation.csproj">
+      <Project>{0AB08668-C5F0-43C3-915E-57295E4BBC12}</Project>
+      <Name>NeuralNetwork.Approximation.API</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NeuralNetwork\NeuralNetwork.csproj">
       <Project>{03B23E8A-4EF4-4BB1-B583-0BA2FF692944}</Project>
       <Name>NeuralNetwork</Name>

@@ -75,8 +75,9 @@ namespace NN.Presentation.Form
             StringBuilder values = new StringBuilder();
             for (double i = 0; i < 3; i+= 0.01)
             {
-                double actualValue = _neuralNetwork.Run(i);
+                NNParameter<double> actualResult = _neuralNetwork.Run(new NNParameter<double>(i));
 
+                var actualValue = actualResult.Collection.First();
                 var exactValue = _function(i);
 
                 NNChart.Series[actual].Points.AddXY(i, actualValue);
@@ -95,13 +96,13 @@ namespace NN.Presentation.Form
             var layers1 = LayerModelToBaseLayer.MapLinear(linear, funcDictionary);
             _neuralNetwork = new NeuralNetworkImplementation(layers1, 1);
 
-            List<double> inputs = new List<double>();
-            List<double> outputs = new List<double>();
+            List<NNParameter<double>> inputs = new List<NNParameter<double>>();
+            List<NNParameter<double>> outputs = new List<NNParameter<double>>();
 
             for (double i = 0; i < 1; i += 0.01)
             {
-                inputs.Add(i);
-                outputs.Add(_function(i));
+                inputs.Add(new NNParameter<double>(Enumerable.Repeat(i, _neuralNetwork.InputsCount).ToArray()));
+                outputs.Add(new NNParameter<double>(Enumerable.Repeat(_function(i), _neuralNetwork.InputsCount).ToArray()));
             }
             _neuralNetwork.Train(inputs, outputs);
             VisualiseNN();
